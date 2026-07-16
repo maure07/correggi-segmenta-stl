@@ -42,13 +42,15 @@ strumento usa invece un approccio affidabile e verificabile:
   colore-per-vertice): ogni colore/materiale diventa una parte separata,
   **anche se nel file la mesh è tutta saldata in un unico blocco continuo** —
   il taglio avviene esattamente al confine del colore.
-- **Se il modello non ha nessuna informazione di colore** (es. un STL puro):
-  l'app può separare solo pezzi già geometricamente **disgiunti** nel file
-  (shell separate che si toccano/si sovrappongono senza essere saldate). Un
-  singolo blocco fuso monocromatico non può essere diviso in automatico: te
-  lo segnala con un avviso. In quel caso serve una versione colorata dello
-  stesso modello (spesso scaricabile dallo stesso generatore IA) oppure un
-  taglio manuale con un altro strumento.
+- **Metodo "Forma" (solo geometria, anche STL puro senza colori)**: divide il
+  modello lungo le **pieghe concave** della superficie — i solchi dove un
+  pezzo incontra l'altro (cappello→testa, collo→busto). Utile quando la
+  texture è troppo "sporca" per tagli puliti, o quando il file non ha colori.
+  Lo slider "N. parti (max)" controlla quante parti tenere: restano i confini
+  più marcati. Limite: i dettagli **solo dipinti** (occhi, sopracciglia senza
+  rilievo) non possono essere separati da questo metodo, perché non esistono
+  nella forma.
+- Se il file non ha colori, il metodo "Forma" viene usato automaticamente.
 
 ## Cosa fa la riparazione
 
